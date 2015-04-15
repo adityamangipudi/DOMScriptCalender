@@ -1,0 +1,23 @@
+div.calendar-info {
+  width: 25%;
+  height: 100%;
+  background-color: #cccccc; }
+
+div.calendar-title {
+  width: 100%;
+  height: 8%;
+  border-top: 1px solid black;
+  background-color: wheat; }
+
+div.days-title {
+  width: 100%;
+  height: 8%;
+  border-top: 1px solid black; }
+
+div.calendar-days {
+  width: 100%;
+  height: 40%;
+  border-top: 1px solid black;
+  background-color: whitesmoke; }
+
+/*# sourceMappingURL=_calendar.css.map */

@@ -1,0 +1,46 @@
+$none: 0
+$fullHeight: 100%
+$calendarwidth: 30%
+$calendarheight:60%
+$lighten: 30
+$titleHeight: 8%
+$border: 1px solid black
+
+
+div.calendar-info
+  height: $fullHeight
+  background-color: lighten(gray, $lighten)
+
+
+div.calendar-title
+  height: $titleHeight
+  border-top: $border
+  background-color: wheat
+  float: left
+
+div.calendar-title>div.year
+  float: right
+
+div.days-title
+  float: left
+  width: $fullHeight
+  height: $titleHeight
+  border-top: $border
+
+
+
+div.calendar-days
+  float: left
+  padding: 0.5em
+  width: 15.8125em
+  border-top: $border
+  background-color: whitesmoke
+
+div.day
+  margin: 1px
+  background-color: gainsboro
+  line-height: 2em
+  width: 2em
+  float: left
+  text-align: center
+
