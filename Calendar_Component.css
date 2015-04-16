@@ -15,13 +15,13 @@ body {
 
 div.calendar-info {
   width: 15.882em;
-  background-color: #cccccc; }
+  float: left; }
 
 div.calendar-title {
-  border-top: 1px solid black;
-  background-color: wheat;
+  border-bottom: 1px solid black;
   padding: 0.5em;
   width: 14.882em;
+  background-color: #48b2c6;
   float: left; }
 
 span.year {
@@ -31,22 +31,75 @@ div.days-title {
   float: left;
   padding: 0.5em;
   width: 14.882em;
-  border-top: 1px solid black;
-  background-color: whitesmoke; }
+  border-bottom: 1px solid black;
+  background-color: #48b2c6; }
 
 div.calendar-days {
   float: left;
   padding: 0.5em;
   width: 14.882em;
-  border-top: 1px solid black;
-  background-color: whitesmoke; }
+  background-color: #48b2c6; }
 
-div.day {
+div.day-title {
   margin: 1px;
-  background-color: gainsboro;
+  background-color: #8ddcb1;
   line-height: 2em;
   width: 2em;
   float: left;
   text-align: center; }
+
+div.day {
+  margin: 1px;
+  background-color: #8ddcb1;
+  line-height: 2em;
+  width: 2em;
+  float: left;
+  text-align: center; }
+
+div.prev-month {
+  color: whitesmoke;
+  background-color: rgba(36, 56, 46, 0.95); }
+
+div.next-month {
+  color: whitesmoke;
+  background-color: rgba(36, 56, 46, 0.95); }
+
+div.day.curr-month:hover {
+  color: springgreen;
+  background-color: black;
+  cursor: pointer; }
+
+div.schedule {
+  float: right;
+  width: -webkit-calc(100% - 16em);
+  width: calc(100% - 16em);
+  height: 102.125em;
+  background-color: #48b2c6; }
+
+div.schedule > * {
+  float: left;
+  border: 1px solid black;
+  height: 102.125em;
+  border-bottom: none; }
+
+div.appointments {
+  width: -webkit-calc(100% - 4.41em);
+  width: calc(100% - 4.41em);
+  height: 102.125em;
+  border: none;
+  position: relative; }
+
+table.times > * {
+  line-height: 2em;
+  border-bottom: 1px solid black; }
+
+div.rectangle {
+  border: 1px solid crimson;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  background-color: rgba(255, 0, 0, 0.5); }
 
 /*# sourceMappingURL=Calendar_Component.css.map */

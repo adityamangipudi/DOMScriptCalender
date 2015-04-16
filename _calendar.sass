@@ -1,49 +1,108 @@
 $none: 0
 $fullHeight: 100%
-$calendarwidth: 30%
+$calendarwidth: 14.882em
 $calendarheight:60%
 $lighten: 30
 $titleHeight: 8%
 $border: 1px solid black
+$pad: 0.5em
+$background: rgb(72, 178, 198)
+$daybackground: #8ddcb1
+$prevColor: rgba(36, 56, 46, 0.95)
+$radius: 15px/50px
+
+@mixin calc($property, $expression)
+  #{$property}: -webkit-calc(#{$expression})
+  #{$property}: calc(#{$expression})
 
 
 div.calendar-info
   width: 15.882em
-  background-color: lighten(gray, $lighten)
-
-
-div.calendar-title
-  border-top: $border
-  background-color: wheat
-  padding: 0.5em
-  width: 14.882em
   float: left
 
+div.calendar-title
+  border-bottom: $border
+  padding: $pad
+  width:  $calendarwidth
+  background-color: $background
+  float: left
 
 span.year
   float: right
 
 div.days-title
   float: left
-  padding: 0.5em
-  width: 14.882em
-  border-top: $border
-  background-color: whitesmoke
-
-
+  padding: $pad
+  width: $calendarwidth
+  border-bottom: $border
+  background-color: $background
 
 div.calendar-days
   float: left
-  padding: 0.5em
-  width: 14.882em
-  border-top: $border
-  background-color: whitesmoke
+  padding: $pad
+  width: $calendarwidth
+  background-color: $background
 
-div.day
+div.day-title
   margin: 1px
-  background-color: gainsboro
+  background-color: $daybackground
   line-height: 2em
   width: 2em
   float: left
   text-align: center
+
+div.day
+  margin: 1px
+  background-color: $daybackground
+  line-height: 2em
+  width: 2em
+  float: left
+  text-align: center
+
+div.prev-month
+  color: whitesmoke
+  background-color: $prevColor
+
+div.next-month
+  color: whitesmoke
+  background-color: $prevColor
+
+div.day.curr-month:hover
+  color: springgreen
+  background-color: black
+  cursor: pointer
+
+div.schedule
+  float: right
+  @include calc(width, "100% - 16em")
+  height: 102.125em
+  background-color: $background
+
+div.schedule>*
+  float: left
+  border: 1px solid black
+  height: 102.125em
+  border-bottom: none
+
+div.appointments
+  @include calc(width, "100% - 4.41em")
+  height: 102.125em
+  border: none
+  position: relative
+
+table.times>*
+  line-height: 2em
+  border-bottom: 1px solid black
+
+div.rectangle
+  border: 1px solid crimson
+  position: absolute
+  top: 0
+  left: 0
+  width: 0
+  height: 0
+  background-color: rgba(255,0,0,0.5)
+
+
+
 
