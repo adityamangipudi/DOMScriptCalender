@@ -14,28 +14,30 @@ body {
   clear: both; }
 
 div.calendar-info {
-  height: 100%;
+  width: 15.882em;
   background-color: #cccccc; }
 
 div.calendar-title {
-  height: 8%;
   border-top: 1px solid black;
   background-color: wheat;
+  padding: 0.5em;
+  width: 14.882em;
   float: left; }
 
-div.calendar-title > div.year {
+span.year {
   float: right; }
 
 div.days-title {
   float: left;
-  width: 100%;
-  height: 8%;
-  border-top: 1px solid black; }
+  padding: 0.5em;
+  width: 14.882em;
+  border-top: 1px solid black;
+  background-color: whitesmoke; }
 
 div.calendar-days {
   float: left;
   padding: 0.5em;
-  width: 15.8125em;
+  width: 14.882em;
   border-top: 1px solid black;
   background-color: whitesmoke; }
 
