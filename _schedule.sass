@@ -1,0 +1,45 @@
+$background: rgb(72, 186, 206)
+$daybackground: #8ddcb1
+
+
+div.appointments
+  @include calc(width, "100% - 16em")
+  height: 108.225em
+  background-color: $background
+
+  float: right
+
+
+
+
+
+table.times
+  width: 100%
+  position: relative
+table.times>*
+  line-height: 2em
+  border: 1px solid black
+  width: 100%
+
+input.rectangle
+  border: 1px solid crimson
+  position: absolute
+  top: 0
+  left: 0
+  width: 0
+  height: 0
+  background-color: $daybackground
+
+td.tdtime
+  text-align: center
+div.schedule-title
+  text-align: center
+  line-height: 1.5em
+  font-size: 1.5em
+  border: 1px solid black
+  background-color: $background
+  @include calc(width, "100% - 10.74em")
+  float: right
+  color: black
+
+

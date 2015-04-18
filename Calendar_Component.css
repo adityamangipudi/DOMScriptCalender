@@ -3,7 +3,8 @@
   padding: 0; }
 
 html, body {
-  height: 100%; }
+  height: 100%;
+  background-color: #72fff7; }
 
 body {
   font: 300 1em "Helvetica Neue"; }
@@ -69,37 +70,43 @@ div.day.curr-month:hover {
   background-color: black;
   cursor: pointer; }
 
-div.schedule {
-  float: right;
+div.appointments {
   width: -webkit-calc(100% - 16em);
   width: calc(100% - 16em);
-  height: 102.125em;
-  background-color: #48b2c6; }
+  height: 108.225em;
+  background-color: #48bace;
+  float: right; }
 
-div.schedule > * {
-  float: left;
-  border: 1px solid black;
-  height: 102.125em;
-  border-bottom: none; }
-
-div.appointments {
-  width: -webkit-calc(100% - 4.41em);
-  width: calc(100% - 4.41em);
-  height: 102.125em;
-  border: none;
+table.times {
+  width: 100%;
   position: relative; }
 
 table.times > * {
   line-height: 2em;
-  border-bottom: 1px solid black; }
+  border: 1px solid black;
+  width: 100%; }
 
-div.rectangle {
+input.rectangle {
   border: 1px solid crimson;
   position: absolute;
   top: 0;
   left: 0;
   width: 0;
   height: 0;
-  background-color: rgba(255, 0, 0, 0.5); }
+  background-color: #8ddcb1; }
+
+td.tdtime {
+  text-align: center; }
+
+div.schedule-title {
+  text-align: center;
+  line-height: 1.5em;
+  font-size: 1.5em;
+  border: 1px solid black;
+  background-color: #48bace;
+  width: -webkit-calc(100% - 10.74em);
+  width: calc(100% - 10.74em);
+  float: right;
+  color: black; }
 
 /*# sourceMappingURL=Calendar_Component.css.map */
