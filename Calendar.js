@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var hours= ['12', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
     var months = [ "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December" ];
-
+    var currDayClicked;
     var front_offset;
     var back_offset;
     var dayClicked =false
@@ -117,10 +117,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if(event.target.classList.contains('curr-month')){
                 dayClicked=true
-                var obj = month[parseInt(event.target.innerHTML)+(front_offset-1)]
+                currDayClicked=parseInt(event.target.innerHTML)+(front_offset-1)
+
+                var obj = month[currDayClicked]
                 schedTitle.innerHTML='Schedule for: ' + months[new Date().getMonth()] + ' ' + event.target.innerHTML + ' ' + new Date().getFullYear()
                 currObj=obj
-                console.log(obj)
+
+                renderSchedule( obj)
+                //console.log(obj)
 
             }
 
@@ -237,21 +241,59 @@ document.addEventListener('DOMContentLoaded', function () {
         var endTime = endHr+':'+endMin + ' ' + ampm
         var appointmentContent= prompt('Create Appointment from ' + startTime + ' to ' + endTime+ ' for this day', '' )
 
-        console.log(appointmentContent)
         if(appointmentContent){
             var appointment = new Appointment(startTime, endTime,appointmentContent)
-            console.log(appointment)
             currObj.schedules.appointments.push(appointment)
-            console.log('currObj',currObj)
-            console.log('month',month)
-            renderSchedule(currObj)
+            renderSchedule( currObj)
         }
 
     }
-    function renderSchedule(obj){
-        obj.schedules.appointments.forEach(function(x){
-            console.log(x)
-        })
+    function renderSchedule( obj){
+        //month..schedules.appointments.forEach(function(x){
+        //    console.log(x)
+        if (month[currDayClicked].day === obj.day){
+            month[currDayClicked].schedules.appointments.forEach(function(appt){
+                //console.log(appt)
+                var td2All = document.querySelectorAll('td.td2');
+                var times = []
+                var select = false
+                var startTime=appt.start.split(' ')
+                var endTime=appt.end.split(' ')
+                //console.log(td2All)
+
+                for (var i =0; i<td2All.length;i++){
+                   // console.log(' in here' , td2All[i])
+                    if(td2All[i].classList.contains(startTime[0]) && td2All[i].classList.contains(startTime[1])){
+                        console.log('in true')
+
+                        select = true
+                    }
+                   // console.log(td2All[i])
+                    if(td2All[i].classList.contains(endTime[0]) && td2All[i].classList.contains(endTime[1])){
+                        console.log('in false')
+                        select = false
+                    }
+                    if(select ){
+                        console.log('in push', endTime)
+
+                        times.push(td2All[i])
+                    }
+
+
+                }
+                console.log(times)
+
+                times.forEach(function(x){
+                    console.log(x)
+
+                    x.style.backgroundColor='white'
+                   console.log( x.style.innerHTML = appt.content)
+
+                })
+
+            });
+        }
+
     }
 
 })
