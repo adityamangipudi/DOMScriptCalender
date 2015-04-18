@@ -19,11 +19,12 @@ document.addEventListener('DOMContentLoaded', function () {
         var first_day = (new Date(today.getFullYear(), today.getMonth(), 1)).getDay();
         var first_date = (new Date(today.getFullYear(), today.getMonth(), 1));
         var last_date = (new Date(today.getFullYear(), today.getMonth()+1, 0))
+
         var last_day = last_date.getDay();
-        //document.querySelector('div.month').innerHTML=months[today.getMonth()]
-        //document.querySelector('span.year').innerHTML=today.getYear()
+
          front_offset=first_day
          back_offset=last_day
+
 
         var monthTitle= createElement('div', document.querySelector('div.calendar-title'), 'month',months[new Date().getMonth()]);
         createElement('span', monthTitle, 'year', new Date().getFullYear())
@@ -32,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         for(var i = 0, len = 6-first_day; i< len; i++){
-            console.log('')
             month.unshift(new CustomDate(last_month_date-i, 0));
         }
         for(var i = 1, len =last_date.getDate(); i<=len; i++){
@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
         for(var i = 0, len = 6-last_day; i<len; i++){
             month.push(new CustomDate((i+1), 2));
         }
-        //console.log(month);
         return month;
 
     }
@@ -93,7 +92,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }else{
                 ampm=' pm'
             }
-           // console.log(count)
+
+
             var tr =createElement('tr',tableElem, hours[count]+':' +mins+ ampm, '')
             var td =createElement('td', tr, hours[count]+':' +mins+ ampm+ ' tdtime',hours[count]+':' +mins+ ampm)
             td.style.width = '5em'
@@ -109,19 +109,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var schedTitle= document.querySelector('div.schedule-title');
 
+     var currObj;
+
+
 
     calendar_div.addEventListener('click', function(event){
 
-            console.log(event.target.classList)
-            console.log(event.target)
-            console.log(event.target.innerHTML)
-            console.log(typeof event.target.innerHTML)
             if(event.target.classList.contains('curr-month')){
                 dayClicked=true
-                var obj = month[event.target.innerHTML]
+                var obj = month[parseInt(event.target.innerHTML)+(front_offset-1)]
                 schedTitle.innerHTML='Schedule for: ' + months[new Date().getMonth()] + ' ' + event.target.innerHTML + ' ' + new Date().getFullYear()
+                currObj=obj
                 console.log(obj)
-                //while(document.querySelectorAll())
 
             }
 
@@ -167,9 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         event.preventDefault()
 
-        //var div =document.createElement('input');
-        //div.className='rectangle';
-        //appdiv.appendChild(div);
+
         if(dayClicked){
             move.initPos=event.target.classList
 
@@ -181,7 +178,6 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 
 
-   // appdiv.addEventListener('mouseup', move);
 
     function move(event){
         event.preventDefault()
@@ -245,8 +241,17 @@ document.addEventListener('DOMContentLoaded', function () {
         if(appointmentContent){
             var appointment = new Appointment(startTime, endTime,appointmentContent)
             console.log(appointment)
+            currObj.schedules.appointments.push(appointment)
+            console.log('currObj',currObj)
+            console.log('month',month)
+            renderSchedule(currObj)
         }
 
+    }
+    function renderSchedule(obj){
+        obj.schedules.appointments.forEach(function(x){
+            console.log(x)
+        })
     }
 
 })
