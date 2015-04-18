@@ -251,6 +251,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function renderSchedule( obj){
         //month..schedules.appointments.forEach(function(x){
         //    console.log(x)
+        reset()
         if (month[currDayClicked].day === obj.day){
             month[currDayClicked].schedules.appointments.forEach(function(appt){
                 //console.log(appt)
@@ -287,13 +288,20 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.log(x)
 
                     x.style.backgroundColor='white'
-                   console.log( x.style.innerHTML = appt.content)
+                   console.log( x.innerHTML = appt.content)
 
                 })
 
             });
         }
 
+    }
+    function reset(){
+        var td2All = document.querySelectorAll('td.td2');
+        for (var i =0; i<td2All.length;i++){
+            td2All[i].innerHTML=''
+            td2All[i].style.backgroundColor='rgb(72, 186, 206)'
+        }
     }
 
 })

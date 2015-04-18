@@ -37,8 +37,18 @@
       <file leaf-file-name="Calendar.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Calendar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.25170067" vertical-offset="1667" max-vertical-offset="4650">
-              <caret line="121" column="41" selection-start-line="121" selection-start-column="41" selection-end-line="121" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.77040815" vertical-offset="4077" max-vertical-offset="4770">
+              <caret line="302" column="62" selection-start-line="302" selection-start-column="62" selection-end-line="302" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="120">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -47,8 +57,8 @@
       <file leaf-file-name="_schedule.sass" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_schedule.sass">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.791666" vertical-offset="44" max-vertical-offset="765">
-              <caret line="33" column="20" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="765">
+              <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -476,14 +486,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="120">
-          <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_calendar.sass">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="629" max-vertical-offset="1245">
@@ -508,18 +510,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="120">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/_schedule.sass">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.791666" vertical-offset="44" max-vertical-offset="765">
-          <caret line="33" column="20" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="765">
+          <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Calendar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25170067" vertical-offset="1667" max-vertical-offset="4650">
-          <caret line="121" column="41" selection-start-line="121" selection-start-column="41" selection-end-line="121" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.77040815" vertical-offset="4077" max-vertical-offset="4770">
+          <caret line="302" column="62" selection-start-line="302" selection-start-column="62" selection-end-line="302" selection-end-column="62" />
           <folding />
         </state>
       </provider>
