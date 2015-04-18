@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 times.forEach(function(x){
                     console.log(x)
 
-                    x.style.backgroundColor='white'
+                    x.style.backgroundColor='#8ddcb1'
                    console.log( x.innerHTML = appt.content)
 
                 })
