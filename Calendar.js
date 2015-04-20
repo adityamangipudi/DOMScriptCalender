@@ -9,45 +9,56 @@ document.addEventListener('DOMContentLoaded', function () {
     var front_offset;
     var back_offset;
     var dayClicked =false
-    function createDaysArr(year, calMonth){
+    var right,left;
+    function createDaysArr(year, calMonth, day){
+        var date = day || (new Date().getDate())
+        console.log(year, calMonth, date)
 
 
+        var today = new Date(year, calMonth, date);
 
-
-        var today = new Date(year, calMonth );
 
         var first_day = (new Date(today.getFullYear(), today.getMonth(), 1)).getDay();
         var first_date = (new Date(today.getFullYear(), today.getMonth(), 1));
         var last_date = (new Date(today.getFullYear(), today.getMonth()+1, 0))
 
         var last_day = last_date.getDay();
-
+        console.log('first ', first_date, first_day)
+        console.log('last ', last_date, 13-last_day)
          front_offset=first_day
          back_offset=last_day
 
-
-        var monthTitle= createElement('div', document.querySelector('div.calendar-title'), 'month',months[new Date().getMonth()]);
-        createElement('span', monthTitle, 'year', new Date().getFullYear())
+        while(document.querySelector('div.calendar-title').hasChildNodes()){
+            document.querySelector('div.calendar-title').removeChild(document.querySelector('div.calendar-title').childNodes[0])
+        }
+        right= createElement('span', document.querySelector('div.calendar-title'), 'right','<');
+        var monthTitle= createElement('div', document.querySelector('div.calendar-title'), 'month',months[calMonth]+' ');
+        left= createElement('span', document.querySelector('div.calendar-title'), 'left','>');
+        createElement('span', document.querySelector('div.calendar-title'), 'year', ' '+new Date().getFullYear())
 
         var last_month_date = new Date(today.getFullYear(), today.getMonth(),0).getDate();
 
-
-        for(var i = 0, len = 6-first_day; i< len; i++){
+        console.log(last_month_date)
+        for(var i = 0, len = first_day; i< len; i++){
             month.unshift(new CustomDate(last_month_date-i, 0));
         }
         for(var i = 1, len =last_date.getDate(); i<=len; i++){
             month.push(new CustomDate(i, 1, new Schedule(i, [])));
         }
-        for(var i = 0, len = 6-last_day; i<len; i++){
+        for(var i = 0, len = 13-last_day; i<len; i++){
             month.push(new CustomDate((i+1), 2));
         }
         return month;
 
     }
 
-    function createCalendar(year, calMonth){
-        var month = createDaysArr(calMonth)
+
+    function createCalendar(year, calMonth, day){
+        var month = createDaysArr(year, calMonth, day)
         var cal_div = document.querySelector('div.calendar-days')
+        while(cal_div.hasChildNodes()){
+            cal_div.removeChild(cal_div.childNodes[0])
+        }
         month.forEach(function(day){
             var classname;
             switch(day.monthType){
@@ -67,8 +78,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
-
-    var calendar_div = createCalendar(new Date().getFullYear(), new Date().getMonth());
+    var currMonth = new Date().getMonth()
+    var currYear = new Date().getFullYear()
+    var calendar_div = createCalendar(currYear, currMonth);
     var tableElem = document.querySelector('table.times');
     var tablePos = createTable(tableElem);
 
@@ -94,10 +106,10 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
 
-            var tr =createElement('tr',tableElem, hours[count]+':' +mins+ ampm, '')
-            var td =createElement('td', tr, hours[count]+':' +mins+ ampm+ ' tdtime',hours[count]+':' +mins+ ampm)
+            var tr =createElement('div',tableElem, hours[count]+':' +mins+ ampm, '')
+            var td =createElement('div', tr, hours[count]+':' +mins+ ampm+ ' tdtime',hours[count]+':' +mins+ ampm)
             td.style.width = '5em'
-            var tdapp =createElement('td', tr, hours[count]+':' +mins+ ampm+ ' td2','')
+            var tdapp =createElement('div', tr, hours[count]+':' +mins+ ampm+ ' td2','')
             if(i==23){
                 count = -1;
             }
@@ -111,22 +123,57 @@ document.addEventListener('DOMContentLoaded', function () {
 
      var currObj;
 
+    var calendar = document.querySelector('div.calendar-info')
+
+    calendar.addEventListener('click', function(event){
+        if(event.target.classList.contains('right')){
+            month = []
+
+            if(currMonth===0){
+                currMonth=11
+                currYear--;
+            }else{
+             currMonth--;
+            }
+            dayClicked=false
+            schedTitle.innerHTML='Schedule '
+            document.querySelector('div.appointments').style.display = "none"
+            calendar_div=createCalendar(currYear, currMonth,1);
+        }
+        if(event.target.classList.contains('left')){
+            month = []
+            if(currMonth===11){
+                currMonth=0
+                currYear++;
 
 
-    calendar_div.addEventListener('click', function(event){
 
-            if(event.target.classList.contains('curr-month')){
-                dayClicked=true
-                currDayClicked=parseInt(event.target.innerHTML)+(front_offset-1)
+            }else{
+                currMonth++;
 
-                var obj = month[currDayClicked]
-                schedTitle.innerHTML='Schedule for: ' + months[new Date().getMonth()] + ' ' + event.target.innerHTML + ' ' + new Date().getFullYear()
-                currObj=obj
 
-                renderSchedule( obj)
-                //console.log(obj)
 
             }
+            dayClicked=false
+            schedTitle.innerHTML='Schedule '
+            document.querySelector('div.appointments').style.display = "none"
+            createCalendar(currYear, currMonth,1);
+        }
+
+        if(event.target.classList.contains('curr-month')){
+            console.log('clicked')
+            document.querySelector('div.appointments').style.display = "block"
+            dayClicked=true
+            currDayClicked=parseInt(event.target.innerHTML)+(front_offset-1)
+
+            var obj = month[currDayClicked]
+            schedTitle.innerHTML='Schedule for: ' + months[currMonth] + ' ' + event.target.innerHTML + ' ' +currYear
+            currObj=obj
+
+            renderSchedule( obj)
+            //console.log(obj)
+
+        }
 
 
     })
@@ -333,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (month[currDayClicked].day === obj.day){
             month[currDayClicked].schedules.appointments.forEach(function(appt){
                 //console.log(appt)
-                var td2All = document.querySelectorAll('td.td2');
+                var td2All = document.querySelectorAll('div.td2');
                 var times = []
                 var select = false
                 var startTime=appt.start.split(' ')
@@ -385,7 +432,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     function reset(){
-        var td2All = document.querySelectorAll('td.td2');
+        var td2All = document.querySelectorAll('div.td2');
         for (var i =0; i<td2All.length;i++){
             td2All[i].innerHTML=''
             td2All[i].style.backgroundColor='rgb(72, 186, 206)'

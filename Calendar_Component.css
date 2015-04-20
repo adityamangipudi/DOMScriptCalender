@@ -25,7 +25,26 @@ div.calendar-title {
   background-color: #48b2c6;
   float: left; }
 
+div.month {
+  font-weight: 400;
+  float: left;
+  margin: 0px 10px;
+  background-color: #48b2c6; }
+
+span.left {
+  font-weight: 700;
+  cursor: pointer; }
+
+span.right:hover, span.left:hover {
+  color: #8ddcb1; }
+
+span.right {
+  font-weight: 700;
+  cursor: pointer;
+  float: left; }
+
 span.year {
+  font-weight: 400;
   float: right; }
 
 div.days-title {
@@ -75,14 +94,15 @@ div.appointments {
   width: calc(100% - 16em);
   height: 108.225em;
   background-color: #48bace;
+  display: none;
   float: right; }
 
-table.times {
+div.times {
   width: 100%;
   position: relative;
   -moz-user-select: none; }
 
-table.times > * {
+div.times > * {
   line-height: 2em;
   border: 1px solid black;
   width: 100%; }
@@ -96,10 +116,10 @@ input.rectangle {
   height: 0;
   background-color: #8ddcb1; }
 
-td.tdtime {
+div.tdtime {
   background-color: #48bace; }
 
-td {
+div {
   text-align: center; }
 
 div.schedule-title {
