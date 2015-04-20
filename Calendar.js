@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', function () {
     var front_offset;
     var back_offset;
     var dayClicked =false
-    function createDaysArr(){
+    function createDaysArr(year, calMonth){
 
 
 
 
-        var today = new Date();
+        var today = new Date(year, calMonth );
 
         var first_day = (new Date(today.getFullYear(), today.getMonth(), 1)).getDay();
         var first_date = (new Date(today.getFullYear(), today.getMonth(), 1));
@@ -45,8 +45,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
-    function createCalendar(){
-        var month = createDaysArr()
+    function createCalendar(year, calMonth){
+        var month = createDaysArr(calMonth)
         var cal_div = document.querySelector('div.calendar-days')
         month.forEach(function(day){
             var classname;
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    var calendar_div = createCalendar();
+    var calendar_div = createCalendar(new Date().getFullYear(), new Date().getMonth());
     var tableElem = document.querySelector('table.times');
     var tablePos = createTable(tableElem);
 
@@ -135,6 +135,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
+
     function createElement(elementType, parent, className, innerHTML){
         var element = document.createElement(elementType);
         if(parent) parent.appendChild(element);
@@ -168,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     appdiv.addEventListener('mousedown', function(event){
 
-        event.preventDefault()
+        //event.preventDefault()
 
 
         if(dayClicked){
@@ -210,6 +212,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     function getAppointment(start,endPos , endTimeArr){
+        console.log(start, ' start endPos', endPos, 'endTArr', endTimeArr)
+        if(start[0] ==='times' || endPos ==='times' || isNaN(endTimeArr[0])){
+
+            return
+        }
         var startTime=start[0]+ ' ' + start[1]
        var endHr = endTimeArr[0]
         var endMin = endTimeArr[1]
@@ -237,17 +244,88 @@ document.addEventListener('DOMContentLoaded', function () {
             endMin='30'
         }
 
-
         var endTime = endHr+':'+endMin + ' ' + ampm
-        var appointmentContent= prompt('Create Appointment from ' + startTime + ' to ' + endTime+ ' for this day', '' )
+
+        var popup = document.querySelector('div.popUpAppt');
+        document.querySelector('textarea#appointment').value=''
+        document.querySelector('textarea#appointment').setAttribute('placeholder', 'Appointment')
+        popup.style.display = 'block';
+
+        var popupTime = document.querySelectorAll('h4')
+
+       popupTime[0].innerHTML="Start time: " + startTime
+       popupTime[1].innerHTML="End time: " + endTime
+        //console.log('start', startTime)
+        //console.log('end', endTime)
+
+       addListeners(startTime, endTime)
+
+
+
+
+
+    }
+    function addListeners(startTime, endTime){
+        var apptForm =document.querySelector('div.apptForm')
+        apptForm.addEventListener('click', function(event){
+            if(event.target.id ==='submit'){
+                var appointmentContent;
+                appointmentContent =check_fields()
+                var b  = createAppt(appointmentContent, startTime, endTime)
+                b? this.removeEventListener('click',arguments.callee,false):'';
+            }
+            if(event.target.id ==='close'){
+                document.querySelector('div.popUpAppt').style.display = "none";
+                this.removeEventListener('click',arguments.callee,false);
+            }
+
+        })
+
+
+
+
+    }
+
+
+
+
+    function createAppt(appointmentContent, startTime, endTime){
 
         if(appointmentContent){
             var appointment = new Appointment(startTime, endTime,appointmentContent)
             currObj.schedules.appointments.push(appointment)
             renderSchedule( currObj)
+            return true
         }
+        return false;
 
     }
+
+
+
+    function close(){
+        document.querySelector('div.popUpAppt').style.display = "none";
+    }
+
+
+
+
+
+    function check_fields(){
+        var apptCont = document.querySelector('textarea#appointment')
+        if(apptCont.value===""){
+            apptCont.setAttribute('placeholder', 'Required Field. Please Enter Info!')
+        }else{
+            close()
+            var ret= apptCont.value
+            return ret
+        }
+    }
+
+
+
+
+
     function renderSchedule( obj){
         //month..schedules.appointments.forEach(function(x){
         //    console.log(x)
@@ -260,42 +338,52 @@ document.addEventListener('DOMContentLoaded', function () {
                 var select = false
                 var startTime=appt.start.split(' ')
                 var endTime=appt.end.split(' ')
-                //console.log(td2All)
 
-                for (var i =0; i<td2All.length;i++){
-                   // console.log(' in here' , td2All[i])
-                    if(td2All[i].classList.contains(startTime[0]) && td2All[i].classList.contains(startTime[1])){
-                        console.log('in true')
+             /*   if(startTime[0].contains('undefined') || startTime[0].contains( 'NaN') ||endTime[0].contains('undefined') || endTime[0].contains('NaN' )){
+                    alert("Please click on valid rows to select correct time.")
+                }else {
+*/
 
-                        select = true
+                    //console.log(td2All)
+
+                    for (var i = 0; i < td2All.length; i++) {
+                        // console.log(' in here' , td2All[i])
+                        if (td2All[i].classList.contains(startTime[0]) && td2All[i].classList.contains(startTime[1])) {
+                           // console.log('in true')
+
+                            select = true
+                        }
+                        // console.log(td2All[i])
+                        if (td2All[i].classList.contains(endTime[0]) && td2All[i].classList.contains(endTime[1])) {
+                           // console.log('in false')
+                            select = false
+                        }
+                        if (select) {
+                          //  console.log('in push', endTime)
+
+                            times.push(td2All[i])
+                        }
+
+
                     }
-                   // console.log(td2All[i])
-                    if(td2All[i].classList.contains(endTime[0]) && td2All[i].classList.contains(endTime[1])){
-                        console.log('in false')
-                        select = false
-                    }
-                    if(select ){
-                        console.log('in push', endTime)
+                    ///console.log(times)
 
-                        times.push(td2All[i])
-                    }
+                    times.forEach(function (x) {
+                        //console.log(x)
 
+                        x.style.backgroundColor = '#8ddcb1'
+                        x.innerHTML === '' ? x.innerHTML = appt.content : x.innerHTML = x.innerHTML + ', ' + appt.content
 
-                }
-                console.log(times)
-
-                times.forEach(function(x){
-                    console.log(x)
-
-                    x.style.backgroundColor='#8ddcb1'
-                   console.log( x.innerHTML = appt.content)
-
-                })
+                    })
+               // }
 
             });
         }
 
     }
+
+
+
     function reset(){
         var td2All = document.querySelectorAll('td.td2');
         for (var i =0; i<td2All.length;i++){

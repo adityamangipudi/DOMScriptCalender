@@ -16,6 +16,7 @@ div.appointments
 table.times
   width: 100%
   position: relative
+  -moz-user-select: none
 table.times>*
   line-height: 2em
   border: 1px solid black
@@ -31,7 +32,12 @@ input.rectangle
   background-color: $daybackground
 
 td.tdtime
+  background-color: $background
+
+td
   text-align: center
+
+
 div.schedule-title
   text-align: center
   line-height: 1.5em
