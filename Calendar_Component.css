@@ -92,15 +92,15 @@ div.day.curr-month:hover {
 div.appointments {
   width: -webkit-calc(100% - 16em);
   width: calc(100% - 16em);
-  height: 108.225em;
+  height: 102em;
   background-color: #48bace;
   display: none;
-  float: right; }
+  float: right;
+  -moz-user-select: none; }
 
 div.times {
   width: 100%;
-  position: relative;
-  -moz-user-select: none; }
+  position: relative; }
 
 div.times > * {
   line-height: 2em;
@@ -117,9 +117,12 @@ input.rectangle {
   background-color: #8ddcb1; }
 
 div.tdtime {
-  background-color: #48bace; }
+  background-color: #48bace;
+  float: left;
+  border-right: 1px solid black;
+  text-align: center; }
 
-div {
+div.td2 {
   text-align: center; }
 
 div.schedule-title {

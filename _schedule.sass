@@ -4,10 +4,11 @@ $daybackground: #8ddcb1
 
 div.appointments
   @include calc(width, "100% - 16em")
-  height: 108.225em
+  height: 102em
   background-color: $background
   display: none
   float: right
+  -moz-user-select: none
 
 
 
@@ -16,7 +17,7 @@ div.appointments
 div.times
   width: 100%
   position: relative
-  -moz-user-select: none
+
 div.times>*
   line-height: 2em
   border: 1px solid black
@@ -33,8 +34,11 @@ input.rectangle
 
 div.tdtime
   background-color: $background
+  float: left
+  border-right: 1px solid black
+  text-align: center
 
-div
+div.td2
   text-align: center
 
 

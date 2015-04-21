@@ -32,9 +32,9 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('div.calendar-title').removeChild(document.querySelector('div.calendar-title').childNodes[0])
         }
         right= createElement('span', document.querySelector('div.calendar-title'), 'right','<');
-        var monthTitle= createElement('div', document.querySelector('div.calendar-title'), 'month',months[calMonth]+' ');
+        var monthTitle= createElement('div', document.querySelector('div.calendar-title'), 'month',months[calMonth]);
         left= createElement('span', document.querySelector('div.calendar-title'), 'left','>');
-        createElement('span', document.querySelector('div.calendar-title'), 'year', ' '+new Date().getFullYear())
+        createElement('span', document.querySelector('div.calendar-title'), 'year', year)
 
         var last_month_date = new Date(today.getFullYear(), today.getMonth(),0).getDate();
 
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var currMonth = new Date().getMonth()
     var currYear = new Date().getFullYear()
     var calendar_div = createCalendar(currYear, currMonth);
-    var tableElem = document.querySelector('table.times');
+    var tableElem = document.querySelector('div.times');
     var tablePos = createTable(tableElem);
 
     function createTable(tableElem){
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
 
-            var tr =createElement('div',tableElem, hours[count]+':' +mins+ ampm, '')
+            var tr =createElement('div',tableElem, hours[count]+':' +mins+ ampm + ' clearfix', '')
             var td =createElement('div', tr, hours[count]+':' +mins+ ampm+ ' tdtime',hours[count]+':' +mins+ ampm)
             td.style.width = '5em'
             var tdapp =createElement('div', tr, hours[count]+':' +mins+ ampm+ ' td2','')
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
         this.appointments =appointments || []
     }
 
-    var appdiv = document.querySelector('table.times')
+    var appdiv = document.querySelector('div.times')
 
     appdiv.addEventListener('mousedown', function(event){
 
