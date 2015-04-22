@@ -125,6 +125,10 @@ div.tdtime {
 div.td2 {
   text-align: center; }
 
+div.highlight {
+  transition: 400ms ease;
+  background: #8ddcb1; }
+
 div.schedule-title {
   text-align: center;
   line-height: 1.5em;
